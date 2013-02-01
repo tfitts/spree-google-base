@@ -7,7 +7,7 @@ module Spree
     end
     
     def google_base_condition
-      google_base_image_link
+      'new'
     end
     
     def google_base_availability
