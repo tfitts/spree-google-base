@@ -15,9 +15,13 @@ module Spree
     end
 
     def google_base_image_link
-      image = images.first and
-      image_path = image.attachment.url(:product) and
-      [Spree::GoogleBase::Config[:public_domain], image_path].join
+      if imagesize >= 500
+        'http://static' + (sku.hash % 6 + 1) +'.ziggos.com/products/' + vendorcode + '/500/' + sku[0] + '/' + sku + '.jpg'
+      elsif imagesize > 0
+        'http://static' + (sku.hash % 6 + 1) +'.ziggos.com/products/' + vendorcode + '/x/' + sku[0] + '/' + sku + '.jpg'
+      else
+        'http://www.ziggos.com/images/missing.jpg'
+      end
     end
 
     def google_base_brand
