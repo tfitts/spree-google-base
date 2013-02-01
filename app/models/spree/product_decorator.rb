@@ -15,12 +15,15 @@ module Spree
     end
 
     def google_base_image_link
+
+      staticnum = (sku.hash % 6 + 1).to_s
+
       if imagesize >= 500
-        'http://static' + (sku.hash % 6 + 1) +'.ziggos.com/products/' + vendorcode + '/500/' + sku[0] + '/' + sku + '.jpg'
+        'http://static' + staticnum +'.ziggos.com/products/' + vendorcode + '/500/' + sku[0] + '/' + sku + '.jpg'
       elsif imagesize > 0
-        'http://static' + (sku.hash % 6 + 1) +'.ziggos.com/products/' + vendorcode + '/x/' + sku[0] + '/' + sku + '.jpg'
+        'http://static' + staticnum +'.ziggos.com/products/' + vendorcode + '/x/' + sku[0] + '/' + sku + '.jpg'
       else
-        'http://www.ziggos.com/images/missing.jpg'
+        nil
       end
     end
 
@@ -37,6 +40,12 @@ module Spree
       )
 
       pp ? pp.value : nil
+    end
+
+    def google_product_category
+
+      'Arts & Entertainment > Party & Celebration'
+
     end
 
     def google_base_product_type
