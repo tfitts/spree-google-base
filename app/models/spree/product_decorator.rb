@@ -7,7 +7,7 @@ module Spree
     end
     
     def google_base_condition
-      'new'
+      'http://www.ziggos.com/images/missing.jpg'
     end
     
     def google_base_availability
