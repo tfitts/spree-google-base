@@ -115,7 +115,6 @@ module SpreeGoogleBase
     end
     
     def build_product(xml, product)
-      binding.pry
       xml.item do
         xml.tag!('link', product_url(product.permalink, :host => domain))
         build_images(xml, product)
