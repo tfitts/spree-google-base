@@ -11,9 +11,6 @@
 
 <p>
   <%= link_to_with_icon 'edit', Spree.t("edit"), edit_admin_google_base_settings_path %>
-  <% if Spree::GoogleBase::Config[:enable_taxon_mapping] %>
-    <%= link_to_with_icon 'edit', t("google_base.manage_taxon_mapping"), admin_taxon_map_index_path %>
-  <% end %>
 </p>
 
 

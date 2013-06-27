@@ -17,6 +17,12 @@ module SpreeGoogleBase
         builder.generate_store
       end
     end
+
+    def self.transfer
+      self.builders.each do |builder|
+        builder.transfer_xml
+      end
+    end
     
     def self.builders
       if defined?(Spree::Store)

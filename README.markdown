@@ -7,23 +7,16 @@ This extension allows you to use Google Base to list products for free that will
 
 For product feed field definitions, (consult http://support.google.com/merchants/bin/answer.py?hl=en&answer=188494#US)
 
+Forked from github.com/jumph4x/spree-google-base, updated for Spree 2.0, removed taxon map and need to install migrations
+
 INSTALLATION
 ------------
 
 1. Create google base account. Create google base ftp account (if applicable). Create data feed in google base with a type "Products" and name "google_base.xml".
 
-2. Install the extension with one of the following commands
+2. Set preferences in spree admin panel (/admin/google_base_settings) for the feed title, public domain, feed description, ftp login and password. FTP login is not required - you may schedule upload from the public directory.
 
-      Add `gem "spree_google_base", :git => 'git://github.com/jumph4x/spree-google-base.git'` to Gemfile
-      Run `bundle install`
-      Run `rails g spree_google_base:install`
-      Run `rake db:migrate`
-
-3. Edit product_type, priorities in spree admin (/admin/taxon_map)
-
-4. Set preferences in spree admin panel (/admin/google_base_settings) for the feed title, public domain, feed description, ftp login and password. FTP login is not required - you may schedule upload from the public directory.
-
-5. Issue the command 'rake spree_google_base:generate' to generate feed. Verify feed exists (YOUR_APP_ROOT/public/google_base.xml).
+3. Issue the command 'rake spree_google_base:generate_and_transfer' to generate feed. Verify feed exists (YOUR_APP_ROOT/public/google_base.xml).
 
 
 ADVANCED CONFIGURATION
