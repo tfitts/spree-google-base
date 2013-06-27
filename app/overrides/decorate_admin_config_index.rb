@@ -1,5 +1,6 @@
-Deface::Override.new(:virtual_path => "spree/admin/configurations/index",
-                     :name => "converted_admin_configurations_menu",
-                     :insert_after => "[data-hook='admin_configurations_menu'], #admin_configurations_menu[data-hook]",
-                     :partial => "spree/admin/google_base_link",
+Deface::Override.new(:virtual_path => "spree/admin/shared/_configuration_menu",
+                     :name => "google_merchant_configuration_menu",
+                     :insert_bottom => "[data-hook='admin_configurations_sidebar_menu']",
+                     :text => "<%= configurations_sidebar_menu_item Spree.t(:google_merchant), admin_google_base_settings_path %>",
+                     :original => '23ad30226677665e68306140013d2ec2ffc6d6e7',
                      :disabled => false)

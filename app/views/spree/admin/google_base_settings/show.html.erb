@@ -7,11 +7,10 @@
     <%= setting_presentation_row(setting) %>
   <% end %>
   <%= setting_presentation_row(:ftp_password, true) %>
-  <%= setting_presentation_row(:enable_taxon_mapping) %>
 </table>
 
 <p>
-  <%= link_to_with_icon 'edit', t("edit"), edit_admin_google_base_settings_path %>
+  <%= link_to_with_icon 'edit', Spree.t("edit"), edit_admin_google_base_settings_path %>
   <% if Spree::GoogleBase::Config[:enable_taxon_mapping] %>
     <%= link_to_with_icon 'edit', t("google_base.manage_taxon_mapping"), admin_taxon_map_index_path %>
   <% end %>

@@ -11,6 +11,12 @@ module SpreeGoogleBase
         builder.generate_and_transfer_store
       end
     end
+
+    def self.generate
+      self.builders.each do |builder|
+        builder.generate_store
+      end
+    end
     
     def self.builders
       if defined?(Spree::Store)
@@ -37,6 +43,16 @@ module SpreeGoogleBase
       else
         Spree::Product.google_base_scope.scoped
       end
+    end
+
+    def generate_store
+      delete_xml_if_exists
+
+      File.open(path, 'w') do |file|
+        generate_xml file
+      end
+
+      cleanup_xml
     end
 
     def generate_and_transfer_store
@@ -93,6 +109,7 @@ module SpreeGoogleBase
     end
     
     def build_product(xml, product)
+      binding.pry
       xml.item do
         xml.tag!('link', product_url(product.permalink, :host => domain))
         build_images(xml, product)

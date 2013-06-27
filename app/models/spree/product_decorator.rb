@@ -11,55 +11,31 @@ module Spree
     end
     
     def google_base_availability
-      'in stock'
+      on_hand > 0 ? 'in stock' : 'out of stock'
+    end
+
+    def on_hand
+      variants_with_only_master.stock_items.first.count_on_hand
     end
 
     def google_base_image_link
-
-      staticnum = (sku.hash % 6 + 1).to_s
-
-      if imagesize >= 500
-        'http://static' + staticnum +'.ziggos.com/products/' + vendorcode + '/500/' + sku[0] + '/' + sku + '.jpg'
-      elsif imagesize > 0
-        'http://static' + staticnum +'.ziggos.com/products/' + vendorcode + '/x/' + sku[0] + '/' + sku + '.jpg'
-      else
-        nil
-      end
+      image = images.first and
+          image_path = image.attachment.url(:product) and
+          [Spree::GoogleBase::Config[:public_domain], image_path].join
     end
 
     def google_base_brand
-      # Taken from github.com/romul/spree-solr-search
-      # app/models/spree/product_decorator.rb
-      #
-      pp = Spree::ProductProperty.first(
-        :joins => :property, 
-        :conditions => {
-          :product_id => self.id,
-          :spree_properties => {:name => 'brand'}
-        }
-      )
-
-      pp ? pp.value : nil
+      property(:brand)
     end
 
     def google_product_category
 
-      'Arts & Entertainment > Party & Celebration'
+      Spree::GoogleBase::Config[:product_category]
 
     end
 
     def google_base_product_type
-      return google_base_taxon_type unless Spree::GoogleBase::Config[:enable_taxon_mapping]
-
-      product_type = ''
-      priority = -1000
-      self.taxons.each do |taxon|
-        if taxon.taxon_map && taxon.taxon_map.priority > priority
-          priority = taxon.taxon_map.priority
-          product_type = taxon.taxon_map.product_type
-        end
-      end
-      product_type
+      google_base_taxon_type
     end
 
     def google_base_taxon_type

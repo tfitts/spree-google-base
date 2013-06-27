@@ -37,20 +37,6 @@ describe Spree::Product do
       end
     end
 
-    context 'with enabled taxon mapping' do
-      before do
-        Spree::GoogleBase::Config.set :enable_taxon_mapping => true
-      end
-      specify { product.google_base_product_type.should_not be_nil }
-    end
-    
-    context 'with disabled taxon mapping' do
-      before do
-        Spree::GoogleBase::Config.set :enable_taxon_mapping => false
-      end
-      specify { product.google_base_product_type.should be_nil }
-    end
-    
     context 'without images' do
       before do
         product.images.clear
