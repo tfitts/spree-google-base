@@ -1,7 +1,7 @@
 <h1><%= t("google_base.export_settings") %></h1>
 
 <table>
-  <% [:title, :public_domain, :description, :ftp_username].each do |setting| %>
+  <% [:title, :public_domain, :description, :product_category, :ftp_username].each do |setting| %>
     <%= setting_presentation_row(setting) %>
   <% end %>
   <%= setting_presentation_row(:ftp_password, true) %>
