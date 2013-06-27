@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.version     = '1.0.0'
   s.summary     = 'Google Base for Spree'
   s.description = 'Provide rake task to generate XML for Google Base and so on.'
-  s.required_ruby_version = '>= 1.8.7'
+  s.required_ruby_version = '>= 1.9.2'
 
   s.authors     = ['Steph Skardal', 'Ryan Siddle', 'Roman Smirnov', 'Denis Ivanov']
   s.homepage          = 'http://github.com/jumph4x/spree-google-base'
@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency('spree', '~> 1.0')
+  s.add_dependency('spree', '~> 2.0')
   
   s.add_development_dependency 'rspec-rails',  '~> 2.7'
   s.add_development_dependency 'sqlite3'
