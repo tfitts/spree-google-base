@@ -109,12 +109,17 @@ module SpreeGoogleBase
       ftp.put(path, filename)
       ftp.quit
     end
+
+    def upc
+      self.upc
+    end
     
     def cleanup_xml
       File.delete(path)
     end
     
     def build_product(xml, product)
+              binding.pry
       xml.item do
         xml.tag!('link', product_url(product.permalink, :host => domain))
         build_images(xml, product)
