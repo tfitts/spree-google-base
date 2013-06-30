@@ -3,7 +3,7 @@ module Spree
     scope :google_base_scope, includes(:taxons, {:master => :images})
     
     def google_base_description
-      description
+      self.description
     end
     
     def google_base_condition
@@ -14,10 +14,6 @@ module Spree
       on_hand > 0 ? 'in stock' : 'out of stock'
     end
 
-    def on_hand
-      variants_with_only_master.stock_items.first.count_on_hand
-    end
-
     def google_base_image_link
       image = images.first and
           image_path = image.attachment.url(:product) and
@@ -25,7 +21,7 @@ module Spree
     end
 
     def google_base_brand
-      property(:brand)
+      self.property(:brand)
     end
 
     def google_product_category
