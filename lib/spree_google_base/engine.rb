@@ -22,8 +22,13 @@ module SpreeGoogleBase
         ['g:brand', 'google_base_brand'],
         ['g:gtin','google_base_gtin'],
         ['g:mpn', 'google_base_mpn'],
+        ['g:gender', 'google_base_gender'],
+        ['g:age_group', 'google_base_age_group'],
+        ['g:color', 'google_base_color'],
+        ['g:size', 'google_base_size'],
         ['g:shipping_weight', 'google_base_shipping_weight'],
-        ['g:adult', 'google_base_adult']
+        ['g:adult', 'google_base_adult'],
+        ['g:adwords_grouping', 'google_base_adwords_group']
       ]
     end
 
