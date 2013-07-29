@@ -75,7 +75,7 @@ module SpreeGoogleBase
     end
 
     def filename
-      "google_base_v#{@store.try(:code)}.xml"
+      "google_merchant.xml"
     end
 
     def delete_xml_if_exists
@@ -141,6 +141,8 @@ module SpreeGoogleBase
           value = product.send(v)
           xml.tag!(k, value.to_s) if value.present?
         end
+
+        build_adwords_labels(xml, product)
       end
     end
 
@@ -150,10 +152,10 @@ module SpreeGoogleBase
       main_image, *more_images = product.images
 
       return unless main_image
-      xml.tag!('g:image_link', image_url(main_image))
+      xml.tag!('g:image_link', image_url(main_image).sub(/\?.*$/, '').sub(/^\/\//, 'http://'))
 
       more_images.each do |image|
-        xml.tag!('g:additional_image_link', image_url(image))
+        xml.tag!('g:additional_image_link', image_url(image).sub(/\?.*$/, '').sub(/^\/\//, 'http://'))
       end
     end
 
@@ -162,6 +164,15 @@ module SpreeGoogleBase
       base_url = "#{domain}/#{base_url}" unless Spree::Config[:use_s3]
 
       base_url
+    end
+
+    def build_adwords_labels(xml, product)     # <g:adwords_labels>
+      return if product.property(:gm_adwords_label).nil?
+
+      labels = self.property(:gm_adwords_label).to_a
+      labels.each do |l|
+        xml.tag!('g:adwords_labels', l)
+      end
     end
 
     def build_meta(xml)
