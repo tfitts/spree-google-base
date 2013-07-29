@@ -75,7 +75,7 @@ module SpreeGoogleBase
     end
 
     def filename
-      "google_merchant.xml"
+      "google_merchant#{@store.try(:code)}.xml"
     end
 
     def delete_xml_if_exists

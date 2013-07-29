@@ -14,7 +14,7 @@ module Spree
 
     # <g:google_product_category> Apparel & Accessories > Clothing > Dresses
     def google_base_product_category
-      self.property(:gm_product_category)
+      self.property(:gm_product_category) || Spree::GoogleBase::Config[:product_category]
     end
 
     # <g:product_type> Home & Garden > Kitchen & Dining > Appliances > Refrigerators
